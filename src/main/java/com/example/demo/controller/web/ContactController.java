@@ -45,8 +45,6 @@ public class ContactController {
         return "contacts";
     }
 
-
-
     @DeleteMapping("/users/{user_id}/contacts/{contact_id}")
     public ResponseEntity<Void> deleteContact(@PathVariable Long user_id, @PathVariable Long contact_id) {
         Contact contact = contactService.getById(contact_id);
@@ -57,4 +55,15 @@ public class ContactController {
         contactService.deleteContact(contact_id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public String searchContacts(@RequestParam("keyword") String keyword, Model model) {
+        List<Contact> contacts = contactService.searchContacts(keyword);
+
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("searchTerm", keyword);
+
+        return "contacts";
+    }
+
 }

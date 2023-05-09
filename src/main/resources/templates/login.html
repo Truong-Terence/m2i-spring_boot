@@ -15,7 +15,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="users/1/contacts">Contact</a>
-                <a class="nav-link" href="/logout">Logout</a>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout" />
+                </form>
                 <a class="nav-link" href="/login">Login</a>
                 <a class="nav-link" href="http://localhost:9090/register">JOIN US !</a>
             </div>

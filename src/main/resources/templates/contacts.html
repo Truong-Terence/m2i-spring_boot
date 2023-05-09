@@ -15,7 +15,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="users/1/contacts">Contact</a>
-                <a class="nav-link" href="/logout">Logout</a>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout" />
+                </form>
                 <a class="nav-link" href="/login">Login</a>
                 <a class="nav-link" href="http://localhost:9090/register">JOIN US !</a>
             </div>
@@ -23,6 +25,13 @@
     </div>
 </nav>
 <h1>Here are your contacts</h1>
+<form th:action="@{/contacts/search}" method="get">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Rechercher un contact" name="keyword">
+        <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+    </div>
+</form>
+
 <table>
     <thead>
     <tr>

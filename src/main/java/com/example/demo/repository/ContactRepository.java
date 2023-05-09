@@ -22,4 +22,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     List<Contact> findByUserId(Long userId);
     void deleteContactById(Long contactId);
+
+    @Query("SELECT c FROM Contact c WHERE c.name LIKE %:keyword%")
+    List<Contact> searchContacts(@Param("keyword") String keyword);
 }

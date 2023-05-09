@@ -30,5 +30,8 @@ public class ContactService {
     public void deleteContact(Long contactId) {
         contactRepository.deleteContactById(contactId);
     }
+    public List<Contact> searchContacts(String keyword) {
+        return contactRepository.searchContacts(keyword);
+    }
 
 }

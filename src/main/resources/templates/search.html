@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacts Found</title>
+</head>
+<body>
+<h1>Contacts Found:</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Firstname</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="contact : ${contacts}">
+    <td th:text="${contact.name}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
