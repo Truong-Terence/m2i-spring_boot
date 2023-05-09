@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Controller
-@RequestMapping("contacts")
+@RequestMapping("")
 public class ContactController {
     @Autowired
     private ContactService contactService;
@@ -30,15 +30,19 @@ public class ContactController {
         User user = userService.getById(user_id);
         List<Contact> contacts = user.getContacts();
         model.addAttribute("contacts", contacts);
+        model.addAttribute("user", user);
         return "contacts";
     }
 
     @RequestMapping(value = "/users/{user_id}/contacts", method = RequestMethod.POST)
-    public String addContact(@PathVariable Long user_id, @ModelAttribute Contact contact) {
+    public String addContact(@PathVariable Long user_id, @ModelAttribute Contact contact, Model model) {
         User user = userService.getById(user_id);
         user.addContact(contact);
         userRepository.save(user);
-        return "/users/" + user_id + "/contacts";
+        List<Contact> contacts = user.getContacts();
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("user", user);
+        return "contacts";
     }
 
 
