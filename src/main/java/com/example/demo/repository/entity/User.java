@@ -43,6 +43,17 @@ public class User {
         contact.setUser(this);
     }
 
+
+    public void removeContact(Contact contact) {
+        contacts.remove(contact);
+        contact.setUser(null);
+    }
+
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
     public Long getId() {
         return id;
     }
@@ -90,4 +101,17 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", picture='" + picture + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
 }

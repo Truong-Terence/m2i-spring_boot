@@ -31,4 +31,20 @@ public class UserService {
         user.addContact(contact);
         userRepository.save(user);
     }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    public void removeContact(Long userId, Long contactId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Contact contact = user.getContacts()
+                .stream()
+                .filter(c -> c.getId().equals(contactId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Contact not found"));
+        user.removeContact(contact);
+        userRepository.save(user);
+    }
 }
