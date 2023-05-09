@@ -1,9 +1,9 @@
 package com.example.demo.repository.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -15,6 +15,8 @@ public class User {
     private String email;
     private String picture;
     private String password;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Contact> contacts = new ArrayList<>();
 
     public User() {
     }
@@ -34,6 +36,11 @@ public class User {
         this.email = email;
         this.picture = picture;
         this.password = password;
+    }
+
+    public void addContact(Contact contact) {
+        contacts.add(contact);
+        contact.setUser(this);
     }
 
     public Long getId() {

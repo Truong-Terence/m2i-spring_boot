@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/contacts">Contacts</a></li>
+        </ul>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </nav>
+<!--    <nav th:replace="~{fragments/navbar :: navbar}"> </nav>-->
+    <h1>The community :</h1>
+
+    <ul>
+        <th:block th:each="user: ${users}">
+            <li th:utext="${user.firstname}"></li>
+        </th:block>
+    </ul>
+    <a href="http://localhost:9090/register">JOIN US !</a>
+</body>
+</html>
